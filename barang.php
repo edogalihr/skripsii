@@ -1,6 +1,6 @@
 <?php
 $query="SELECT barang.id_barang AS id, barang.nama AS nama, barang.jenis AS jenis, barang.tanggal AS tanggal, barang.harga AS harga, barang.stok AS stok, supplier.nama_supplier AS supplier  FROM barang, supplier WHERE barang.id_supplier=supplier.id_supplier";
-$barang=mysqli_query($conn,$qry) or die(mysqli_error($conn));
+$barang=mysqli_query($conn,$query) or die(mysqli_error($conn));
 $row_barang=mysqli_fetch_assoc($barang);
 $num_barang=mysqli_num_rows($barang);
 ?>

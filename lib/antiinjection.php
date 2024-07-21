@@ -1,6 +1,13 @@
-<?php 
-function anti_injection($data){
-$filter = mysqli_real_escape_string(stripslashes(strip_tags(htmlspecialchars($data,ENT_QUOTES))));
-return $filter;
+<?php
+function anti_injection($data) {
+    // // Example implementation
+    // if ($type === 'string') {
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+    // } elseif ($type === 'integer') {
+        // $data = intval($data);
+    // }
+    // Add more sanitization based on $type
+    return $data;
 }
 ?>

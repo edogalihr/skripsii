@@ -1,6 +1,6 @@
 <?php
 $query="SELECT * FROM supplier";
-$supp=mysqli_query($conn,$qry) or die(mysqli_error($conn));
+$supp=mysqli_query($conn,$query) or die(mysqli_error($conn));
 $row_supp=mysqli_fetch_assoc($supp);
 $num_supp=mysqli_num_rows($supp);
 ?>

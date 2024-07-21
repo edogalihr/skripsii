@@ -1,7 +1,7 @@
 <?php
 $id_admin=$_SESSION['id_admin'];
 $admin="SELECT * FROM admin WHERE id_admin='$id_admin'";
-$edit=mysqli_query($$conn,$qry_admin) or die(mysqli_error($conn));
+$edit=mysqli_query($conn,$id_admin) or die(mysqli_error($conn));
 $row_edit=mysqli_fetch_assoc($edit);
 if ((isset($_POST["aksi"])) && ($_POST["aksi"] == "ubah")) {
 	$id=$_SESSION['id_admin'];

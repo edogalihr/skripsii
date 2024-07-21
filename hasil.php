@@ -1,10 +1,18 @@
 <?php 
+require_once('lib/config.php');
 //lihat prediksi berdasarkan trend
-$tahun=$_POST['tahun'];
-$x=$_POST['x_next'];
-$a=$_POST['a'];
-$b=$_POST['b'];
+$tahun = isset($_POST['tahun']) ? $_POST['tahun'] : null;
+$x_next = isset($_POST['x_next']) ? $_POST['x_next'] : null;
+$a = isset($_POST['a']) ? $_POST['a'] : null;
+$b = isset($_POST['b']) ? $_POST['b'] : null;
+$x = 0; // Default value or initial value
 $peramalan=$a+($b*$x);
+// If $x is expected from a form submission or another script, check and assign it
+if (isset($_POST['x'])) {
+    $x = $_POST['x'];
+} elseif (isset($_GET['x'])) {
+    $x = $_GET['x'];
+}
 //lihat data peramalan yang tersimpan
 $qry="SELECT * FROM peramalan";
 $ramal=mysqli_query($conn,$qry) or die(mysqli_error($conn));
@@ -16,7 +24,8 @@ $peramalan=$_POST['peramalan'];
 $qry_simpan="INSERT INTO peramalan VALUES ('','$tahun','$peramalan')";
 $simpan=mysqli_query($conn,$qry_simpan) or die(mysqli_error($conn));
 ?><script language="javascript">document.location.href='?page=hasil' </script> <?php
-} else if ((isset($_GET["aksi"])) && ($_GET["aksi"] == "del")) {
+} 
+else if ((isset($_GET["aksi"])) && ($_GET["aksi"] == "del")) {
 $id=$_GET['id'];
 $qry_del="DELETE FROM peramalan WHERE id_peramalan='$id'";
 $del=mysqli_query($conn,$qry_del) or die(mysqli_error($conn));

@@ -3,7 +3,7 @@
 $ip=$_SERVER['REMOTE_ADDR'];
 //lihat apakah user sudah melakukan peramalan
 $query="SELECT * FROM tmp WHERE no_ip='$ip'";
-$ramal=mysqli_query($conn,$qry) or die(mysqli_error($conn));
+$ramal=mysqli_query($conn,$query) or die(mysqli_error($conn));
 $row_ramal=mysqli_fetch_assoc($ramal);
 $num_ramal=mysqli_num_rows($ramal);
 

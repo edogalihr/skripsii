@@ -1,6 +1,6 @@
 <?php
 $query="SELECT * FROM supplier";
-$supplier=mysqli_query($conn,$qry) or die(mysqli_error($conn));
+$supplier=mysqli_query($conn,$query) or die(mysqli_error($conn));
 $row_supplier=mysqli_fetch_assoc($supplier);
 if ((isset($_POST["aksi"])) && ($_POST["aksi"] == "tambah")) {
  $tanggal=$_POST['tanggal'];
@@ -80,7 +80,7 @@ if ((isset($_POST["aksi"])) && ($_POST["aksi"] == "tambah")) {
 <label>Stok (Qty)</label>
    <input type="text" class="form-control" name="stok" value="<?php if(isset($row_edit['stok'])){echo $row_edit['stok'];} ?>">
 </div>
-<div class="form-group">
+<div class="form-group">+
 <label>Nama Supplier</label>
   <select class="form-control" name="supplier">
  <?php do {?>

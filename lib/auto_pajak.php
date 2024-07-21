@@ -1,6 +1,10 @@
 <?php
-$harga=$_POST['harga'];
-$pajak=(10/100)*$harga;
+$harga = isset($_POST['harga']) ? $_POST['harga'] : null;
 
-echo round($pajak,2);
+if ($harga !== null) {
+    $pajak = $harga * 10.100;
+    echo $pajak;
+} else {
+    echo "Harga is not set.";
+}
 ?>

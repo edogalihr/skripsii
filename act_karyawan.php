@@ -51,7 +51,7 @@ if ((isset($_POST["aksi"])) && ($_POST["aksi"] == "tambah")) {
         <label>Jenis Kelamin</label>
         <div class="radio">
           <label>
-            <input type="radio" name="gender" id="gender" value="L" <?php if (!(strcmp($row_edit['jenis_kelamin'],"L"))) {echo "CHECKED";} ?>>
+          <input type="radio" name="gender" id="gender" value="L" <?php if (!(strcmp($row_edit['jenis_kelamin'],"L"))) {echo "CHECKED";} ?>>
             Laki-laki </label>
         </div>
         <div class="radio">

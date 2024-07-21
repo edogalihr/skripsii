@@ -1,12 +1,12 @@
 <?php 
-$qry1="SELECT * FROM barang";
-$barang=mysqli_query($conn,$qry) or die(mysqli_error($conn));
+$query1="SELECT * FROM barang";
+$barang=mysqli_query($conn,$query) or die(mysqli_error($conn));
 $row_barang=mysqli_fetch_assoc($barang);
-$qry2="SELECT * FROM supplier";
-$supplier=mysqli_query($conn,$qry) or die(mysqli_error($conn));
+$query2="SELECT * FROM supplier";
+$supplier=mysqli_query($conn,$query) or die(mysqli_error($conn));
 $row_supplier=mysqli_fetch_assoc($supplier);
-$qry3="SELECT * FROM karyawan";
-$karyawan=mysqli_query($conn,$qry) or die(mysqli_error($conn));
+$query3="SELECT * FROM karyawan";
+$karyawan=mysqli_query($conn,$query) or die(mysqli_error($conn));
 $row_karyawan=mysqli_fetch_assoc($karyawan);
 if ((isset($_POST["aksi"])) && ($_POST["aksi"] == "tambah")) {
 	$faktur=$_POST['no_faktur'];
@@ -19,7 +19,7 @@ if ((isset($_POST["aksi"])) && ($_POST["aksi"] == "tambah")) {
 	$pajak=$_POST['pajak'];
 	$total=$_POST['total'];
 	$query="INSERT INTO pembelian VALUES ('$faktur','$tgl','$karyawan','$supplier','$barang','$jumlah','$harga','$pajak','$total')";
-	$tambah=mysqli_query($conn,$qry) or die(mysqli_error($conn));
+	$tambah=mysqli_query($conn,$query) or die(mysqli_error($conn));
 	if ($tambah) {
  	exit("<script>location.href='?page=pembelian'</script>");
 	}
@@ -34,19 +34,19 @@ if ((isset($_POST["aksi"])) && ($_POST["aksi"] == "tambah")) {
 	$pajak=$_POST['pajak'];
 	$total=$_POST['total'];
 	$query="UPDATE INTO pembelian SET tanggal='$tgl', id_karyawan='$karyawan', id_supplier='$supplier', id_barang='$barang', jumlah='$jumlah', harga='$harga', pajak='$pajak', total='$total' WHERE no_faktur='$faktur'";
-	$update=mysqli_query($conn,$qry) or die(mysqli_error($conn));
+	$update=mysqli_query($conn,$query) or die(mysqli_error($conn));
 	if ($update) {
  	exit("<script>location.href='?page=pembelian'</script>");
 	}
 } else if ((isset($_GET["act"])) && ($_GET["act"] == "edit")) {
 	$faktur=$_GET['no_faktur'];
 	$query="SELECT * FROM pembelian WHERE no_faktur='$faktur'";
-	$edit=mysqli_query($conn,$qry) or die(mysqli_error($conn));
+	$edit=mysqli_query($conn,$query) or die(mysqli_error($conn));
 	$row_edit=mysqli_fetch_assoc($edit);
 } else if ((isset($_GET["act"])) && ($_GET["act"] == "del")) {
 	$faktur=$_GET['no_faktur'];
 	$query="DELETE FROM pembelian WHERE no_faktur='$faktur'";
-	$del=mysqli_query($conn,$qry) or die(mysqli_error($conn));
+	$del=mysqli_query($conn,$query) or die(mysqli_error($conn));
 	if ($del) {
  	exit("<script>location.href='?page=pembelian'</script>");
 	}

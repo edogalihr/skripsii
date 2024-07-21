@@ -1,6 +1,6 @@
 <?php
 $query="SELECT * FROM karyawan";
-$karyawan=mysqli_query($conn,$qry) or die(mysqli_error($conn));
+$karyawan=mysqli_query($conn,$query) or die(mysqli_error($conn));
 $row_karyawan=mysqli_fetch_assoc($karyawan);
 ?>
 <div class="alert alert-success alert-dismissable">

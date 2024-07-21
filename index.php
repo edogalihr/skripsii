@@ -1,28 +1,52 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample External CSS</title>
+    <!-- Linking the external CSS file -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/sb-admin.css">
+	<link rel="stylesheet" type="text/css" href="css/boostrap.css">
+	<link rel="stylesheet" type="text/css" href="css/flora.datepicker.css"> -->
+	<link href="css/startbootstrap-sb-admin-2-gh-pages/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/startbootstrap-sb-admin-2-gh-pages/css/sb-admin-2.min.css" rel="stylesheet">
+</head>
 <?php 
 require_once('lib/config.php'); 
 require_once('lib/antiinjection.php');
 ?>
 <?php
 // *** Validate request to login to this site.
-if (!isset($_SESSION)) {
-  session_start();
-}
+// if (!isset($_SESSION)) {
+// session_start();1
+// }
 if ((isset($_POST["login"])) && ($_POST["login"] == "LOGIN")) {
-$user=anti_injection($_POST['username']);
-$pass=anti_injection(md5($_POST['password']));
+	// echo "berhasil";
+// $user=anti_injection($_POST['username']);
+// $pass=anti_injection(md5($_POST['password']));
+
+$user=$_POST['username'];
+$pass=md5($_POST['password']);
+
+// echo $pass;
 $query="SELECT * FROM admin WHERE username='$user' AND password='$pass'";
-$login=mysqli_query($conn,$qry) or die(mysqli_error($conn));
+$login=mysqli_query($conn,$query) or die(mysqli_error($conn));
+// $row_login=mysqli_fetch_assoc($login);
 $num_login=mysqli_num_rows($login);
-if ($num_login>0) {
-  $row_login=mysqli_fetch_assoc($login);
-  $_SESSION['id_admin']=$row_login['id_admin'];
-  ?><script language="javascript">document.location.href='dashboard.php'</script><?php
-  }
-else {
-  session_destroy();
-  ?><script language="javascript">alert("Login Gagal..!! Cek kembali");
-			 document.location.href='index.php' </script><?php
-  }
+
+if($num_login>0) {
+	// $row_login=mysqli_fetch_assoc($login);
+  	$_SESSION['id_admin']=$user;
+  	?><script language="javascript">document.location.href='dashboard.php'</script><?php
+} else {
+	session_destroy();
+	?><script language="javascript">alert("Login Gagal..!! Cek kembali");
+			document.location.href='index.php' </script><?php
+}
+
 }
 ?>
 <html>
@@ -46,7 +70,7 @@ else {
 		<tr><td width="251"><font face="verdana" size="2">&nbsp;
 		</font>
 		
-		<form method="POST" name="postform">
+		<form method="POST" name="postform" action="<?php echo htmlspecialchars_decode($_SERVER['PHP_SELF']); ?>">
 		  <table width="251" height="101" border="0" align="center">
 		  <tr valign="bottom">
 			<td width="104" height="35"><font color="#666666" size="4" face="verdana">Username</font></td>

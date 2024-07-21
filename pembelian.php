@@ -1,7 +1,7 @@
 <?php 
 $query="SELECT pembelian.no_faktur AS no_faktur, pembelian.tanggal AS tanggal, karyawan.nama AS karyawan, supplier.nama_supplier AS supplier, barang.nama AS barang, pembelian.jumlah_barang AS jumlah, pembelian.harga AS harga, pembelian.pajak AS pajak, pembelian.total_bayar AS total FROM pembelian, karyawan, barang, supplier WHERE pembelian.id_karyawan=karyawan.id_karyawan AND
 pembelian.id_supplier=supplier.id_supplier AND pembelian.id_barang=barang.id_barang";
-$pemb=mysqli_query($conn,$qry) or die(mysqli_error($conn));
+$pemb=mysqli_query($conn,$query) or die(mysqli_error($conn));
 $row_pemb=mysqli_fetch_assoc($pemb)
 ?>
 <div class="alert alert-success alert-dismissable">

@@ -131,7 +131,7 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
 
         <div class="row">
           <div class="col-lg-12">
-            <h1>Peramalan Pengadaaan barang <small> Metode Least Square</small></h1>
+            <h1> Prediksi Stok barang <small> Metode Least Square</small></h1>
            
           </div>
         </div><!-- /.row -->
